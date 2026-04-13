@@ -40,12 +40,19 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
       
+      # - name: Push the image to Amazon ECR
+      #   env:
+      #     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+      #   run: |
+      #     docker image tag temp_api_image_latest $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }}
+      #     docker image push
+
       - name: Push the image to Amazon ECR
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
-          docker image tag temp_api_image_latest $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }}
-          docker image push
+          docker image tag temp_api_image:latest $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }}
+          docker image push $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }}
 
       
 
