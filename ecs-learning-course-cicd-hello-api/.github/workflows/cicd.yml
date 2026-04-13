@@ -1,0 +1,12 @@
+name: Hwello GitHub Actions
+on: push #何をトリガーにして動くか
+jobs:
+  hello-job:
+    runs-on: ubuntu-latest
+    steps:
+      -run: echo "Hello"
+      -run: echo "GitHub Actions!!"
+  goodbye-job:
+    runs-on: ubuntu-latest
+    steps:
+      -run: echo "Goodbye GitHub Actions!!"
